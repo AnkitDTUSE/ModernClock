@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>clock</title>
+  </head>
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Inconsolata&display=swap");
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    html,
+    body {
+      height: 100%;
+      width: 100%;
+      position: relative;
+      cursor: none;
+    }
+    .customCursor {
+      height: 14px;
+      width: 14px;
+      background: rgb(117, 103, 103);
+      background-color: white;
+      mix-blend-mode: difference;
+      position: absolute;
+      box-shadow: rgba(177, 177, 193, 0.25) 0px 50px 100px -20px,
+        rgba(117, 115, 115, 0.3) 0px 30px 60px -30px,
+        rgba(240, 244, 248, 0.35) 0px -2px 6px 0px inset;
+      z-index: 10;
+      border-radius: 50%;
+    }
+    .main {
+      width: 100%;
+      height: 100vh;
+      display: flex;
+      align-items: end;
+      justify-content: center;
+      /* background: #bbb8bb;
+      background: linear-gradient(
+        145deg,
+        rgba(187, 184, 187, 1) 10%,
+        rgba(105, 107, 113, 1) 66%
+      ); */
+      /* background-color: #808080; */
+      background: #adadad;
+      background: linear-gradient(
+        135deg,
+        rgba(173, 173, 173, 1) 0%,
+        rgba(128, 128, 128, 0.93) 100%
+      );
+    }
+    .container {
+      position: relative;
+      width: 90%;
+      height: 50%;
+      display: flex;
+      gap: 1.3rem;
+      justify-content: center;
+      margin-bottom: 3rem;
+    }
+    .strip {
+      display: flex;
+      z-index: 4;
+      position: absolute;
+      align-items: center;
+      justify-content: center;
+      gap: 1.3rem;
+      top: 0;
+      border-radius: 30px;
+      left: 30%;
+      width: 40%;
+      height: 33px;
+      background-color: transparent;
+    }
+    .circle {
+      height: 100%;
+      width: 35px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transform: scale(1.4);
+      border-radius: 80px;
+      background: #808080;
+      box-shadow: 5px 5px 10px #575757, -5px -5px 10px #a9a9a9;
+      background-color: rgba(128, 128, 128, 0.326);
+    }
+    .timeStrip {
+      font-family: "Inconsolata", monospace;
+      color: rgba(255, 255, 255, 0.696);
+      width: 35px;
+      font-weight: bolder;
+      height: fit-content;
+      background-color: rgb(147, 127, 127);
+      border-radius: 10px;
+      /* background: #808080; */
+      box-shadow: 5px 5px 10px #464646, -5px -5px 10px #bababa;
+      /* border-radius: 10px;
+      box-shadow: 5px 5px 13px #494949, -5px -5px 13px #b7b7b7; */
+    }
+    .timeStrip p {
+      height: 34px;
+      text-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+        rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    #hr2,
+    #c2 {
+      margin-right: 1.5rem;
+    }
+    #min2 {
+      margin-right: 1.5rem;
+    }
+    .num {
+      height:69%;
+      width:69%;
+      background-color: rgb(147, 127, 127);
+    }
+    #secNum2,
+    #secNum1,
+    #minNum2,
+    #minNum1,
+    #hrNum1,
+    #hrNum2 {
+      display: flex;
+      border-radius: 50%;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      font-family: "inconsolata";
+      font-weight: bolder;
+      color: white;
+      font-size: 1rem;
+    }
+  </style>
+  <body>
+    <div class="customCursor"></div>
+    <div class="main">
+      <div class="container">
+        <div class="strip">
+          <div class="circle"><div class="num" id="hrNum1"></div></div>
+          <div class="circle" id="c2"><div class="num" id="hrNum2"></div></div>
+          <div class="circle"><div class="num" id="minNum1"></div></div>
+          <div class="circle" id="c2"><div class="num" id="minNum2"></div></div>
+          <div class="circle"><div class="num" id="secNum1"></div></div>
+          <div class="circle"><div class="num" id="secNum2"></div></div>
+        </div>
+        <div class="timeStrip" id="hr1">
+          <p>0</p>
+          <p>1</p>
+          <p>2</p>
+        </div>
+        <div class="timeStrip" id="hr2">
+          <p>0</p>
+          <p>1</p>
+          <p>2</p>
+          <p>3</p>
+          <p>4</p>
+          <p>5</p>
+          <p>6</p>
+          <p>7</p>
+          <p>8</p>
+          <p>9</p>
+        </div>
+        <div class="timeStrip" id="min1">
+          <p>0</p>
+          <p>1</p>
+          <p>2</p>
+          <p>3</p>
+          <p>4</p>
+          <p>5</p>
+        </div>
+        <div class="timeStrip" id="min2">
+          <p>0</p>
+          <p>1</p>
+          <p>2</p>
+          <p>3</p>
+          <p>4</p>
+          <p>5</p>
+          <p>6</p>
+          <p>7</p>
+          <p>8</p>
+          <p>9</p>
+        </div>
+        <div class="timeStrip" id="sec1">
+          <p>0</p>
+          <p>1</p>
+          <p>2</p>
+          <p>3</p>
+          <p>4</p>
+          <p>5</p>
+        </div>
+        <div class="timeStrip" id="sec2">
+          <p>0</p>
+          <p>1</p>
+          <p>2</p>
+          <p>3</p>
+          <p>4</p>
+          <p>5</p>
+          <p>6</p>
+          <p>7</p>
+          <p>8</p>
+          <p>9</p>
+        </div>
+      </div>
+    </div>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"
+      integrity="sha512-NcZdtrT77bJr4STcmsGAESr06BYGE8woZdSdEgqnpyqac7sugNO+Tr4bGwGF3MsnEkGKhU2KL2xh6Ec+BqsaHA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script>
+      const offset = 34;
+      window.addEventListener("mousemove", (event) => {
+        gsap.to(".customCursor", {
+          x: event.x,
+          y: event.y,
+          ease: "back.out",
+        });
+      });
+      let hr=23
+      let min=59
+      let sec=47
+      setInterval(() => {
+        let time = new Date();
+        sec++;
+        if(sec===60){
+          sec=0;
+          min++;
+        }
+        if(min===60){
+          hr++;
+        }
+        console.log(hr,sec,min);
+        
+        time.setHours((hr>23)?0:hr);
+        time.setMinutes((min>59)?0:min);
+        time.setSeconds((sec>59)?0:sec);
+        
+        let sec2 = time.getSeconds() % 10;
+        let sec1 = time.getSeconds() - sec2;
+
+        let min2 = time.getMinutes() % 10;
+        let min1 = time.getMinutes() - min2;
+
+        let hr2 = time.getHours() % 10;
+        let hr1 = time.getHours() - hr2;
+
+        let sec2offset = -1 * offset * sec2;
+        let sec1offset = (-1 * offset * sec1) / 10;
+        let min2offset = -1 * offset * min2;
+        let min1offset = (-1 * offset * min1) / 10;
+        let hr2offset = -1 * offset * hr2;
+        let hr1offset = (-1 * offset * hr1) / 10;
+        document.querySelector("#secNum2").innerHTML = `<p>${sec2}</p>`;
+        document.querySelector("#minNum2").innerHTML = `<p>${min2}</p>`;
+        document.querySelector("#hrNum2").innerHTML = `<p>${hr2}</p>`;
+        document.querySelector("#secNum1").innerHTML = `<p>${sec1 / 10}</p>`;
+        document.querySelector("#minNum1").innerHTML = `<p>${min1 / 10}</p>`;
+        document.querySelector("#hrNum1").innerHTML = `<p>${hr1 / 10}</p>`;
+        gsap.from("#secNum2 p", {
+          // scale:0.2,
+          duration: 0.2,
+          ease: "power4.out",
+        });
+        gsap.from("#secNum1 p", {
+          // scale:0.2,
+          duration: 0.2,
+          ease: "power4.out",
+        });
+        gsap.from("#minNum2 p", {
+          // scale:0.2,
+          duration: 0.2,
+          ease: "power4.out",
+        });
+        gsap.from("#minNum1 p", {
+          // scale:0.2,
+          duration: 0.2,
+          ease: "power4.out",
+        });
+        gsap.from("#hrNum2 p", {
+          // scale:0.2,
+          duration: 0.2,
+          ease: "power4.out",
+        });
+        gsap.from("#hrNum1 p", {
+          // scale:0.2,
+          duration: 0.2,
+          ease: "power4.out",
+        });
+        gsap.to("#sec2", {
+          y: sec2offset,
+        });
+        gsap.to("#sec1", {
+          y: sec1offset,
+        });
+        gsap.to("#min2", {
+          y: min2offset,
+        });
+        gsap.to("#min1", {
+          y: min1offset,
+        });
+        gsap.to("#hr2", {
+          y: hr2offset,
+        });
+        gsap.to("#hr1", {
+          y: hr1offset,
+        });
+      }, 1000);
+    </script>
+  </body>
+</html>

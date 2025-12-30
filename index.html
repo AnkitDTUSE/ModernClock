@@ -224,9 +224,9 @@
           ease: "back.out",
         });
       });
-      let hr=23
-      let min=59
-      let sec=47
+      let hr= new Date().getHours(); 
+      let min= new Date().getMinutes();
+      let sec= new Date().getSeconds();
       setInterval(() => {
         let time = new Date();
         sec++;
@@ -316,3 +316,4 @@
     </script>
   </body>
 </html>
+

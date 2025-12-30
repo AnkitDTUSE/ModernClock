@@ -224,9 +224,10 @@
           ease: "back.out",
         });
       });
-      let hr= new Date().getHours(); 
-      let min= new Date().getMinutes();
-      let sec= new Date().getSeconds();
+      let time = new Date();
+      let hr= time.getHours(); 
+      let min = time.getMinutes();
+      let sec= time.getSeconds();
       setInterval(() => {
         let time = new Date();
         sec++;
@@ -316,4 +317,5 @@
     </script>
   </body>
 </html>
+
 
